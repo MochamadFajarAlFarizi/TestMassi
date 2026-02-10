@@ -96,7 +96,7 @@ fun StoriesSection() {
                         .clip(CircleShape),
                     contentScale = ContentScale.Crop
                 )
-                Text("User $it", fontSize = 12.sp)
+                Text("User $it", fontSize = 12.sp)hh
             }
         }
     }

@@ -1,3 +1,4 @@
+import android.R
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -9,12 +10,18 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.MoreVert
+import androidx.compose.material.icons.filled.Person
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material.icons.outlined.AddCircle
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.MailOutline
+import androidx.compose.material.icons.outlined.PlayArrow
 import androidx.compose.material.icons.outlined.Refresh
 import androidx.compose.material.icons.outlined.Send
 import androidx.compose.material3.*
+import androidx.compose.material3.AlertDialogDefaults.containerColor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -68,6 +75,9 @@ fun InstagramHomeScreen(posts: List<Post>) {
                     IconButton(onClick = { }) { Icon(Icons.Outlined.Send, "Direct Message") }
                 }
             )
+        },
+        bottomBar = {
+            BottomAppBar { InstagramBottomNav() }
         }
     ) { padding ->
         LazyColumn(modifier = Modifier.padding(padding)) {
@@ -75,6 +85,8 @@ fun InstagramHomeScreen(posts: List<Post>) {
             items(posts) { post -> InstagramPostItem(post) }
         }
     }
+
+
 }
 
 @Composable
@@ -96,7 +108,7 @@ fun StoriesSection() {
                         .clip(CircleShape),
                     contentScale = ContentScale.Crop
                 )
-                Text("User $it", fontSize = 12.sp)hh
+                Text("User $it", fontSize = 12.sp)
             }
         }
     }
@@ -154,6 +166,37 @@ fun InstagramPostItem(post: Post) {
             }
         }
         Spacer(modifier = Modifier.height(16.dp))
+    }
+}
+
+@Composable
+fun InstagramBottomNav() {
+    NavigationBar(containerColor = Color.White) {
+        NavigationBarItem(
+            selected = true,
+            onClick = {},
+            icon = { Icon(Icons.Filled.Home, contentDescription = "Home") }
+        )
+        NavigationBarItem(
+            selected = false,
+            onClick = {},
+            icon = { Icon(Icons.Filled.Search, contentDescription = "Search") }
+        )
+        NavigationBarItem(
+            selected = false,
+            onClick = {},
+            icon = { Icon(Icons.Outlined.AddCircle, contentDescription = "Add") }
+        )
+        NavigationBarItem(
+            selected = false,
+            onClick = {},
+            icon = { Icon(Icons.Outlined.PlayArrow, contentDescription = "Reels") }
+        )
+        NavigationBarItem(
+            selected = false,
+            onClick = {},
+            icon = { Icon(Icons.Filled.Person, contentDescription = "Profile") }
+        )
     }
 }
 
